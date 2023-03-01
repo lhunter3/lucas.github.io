@@ -440,6 +440,27 @@ a:hover {
   border-color: #cde1f8;
 }
 
+
+.button1:hover {
+  background-color: #0062d3;
+  color: #fff;
+  transition: all 500ms ease;
+}
+
+.button1-a {
+  text-decoration: none;
+  background-color: #0078ff;
+  color: #fff;
+  border-color: #cde1f8;
+}
+
+.button1-a:hover {
+  text-decoration: none;
+  background-color: #000000;
+  color: #fff;
+  border-color: #cde1f8;
+}
+
 .button-big {
   padding: 0.9rem 2.3rem;
   font-size: 1.2rem;
@@ -455,6 +476,7 @@ a:hover {
   line-height: 1.5;
   border-radius: 0.3rem;
 }
+
 
 /*--------------------------------------------------------------
 # Header
@@ -773,6 +795,18 @@ a:hover {
   color: #fff;
   font-weight: 600;
   font-size: 3rem;
+}
+
+.hero .hero-title2 {
+  color: #000000;
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+@media (min-width: 768px) {
+  .hero .hero-title2 {
+    font-size: 4.5rem;
+  }
 }
 
 @media (min-width: 768px) {
