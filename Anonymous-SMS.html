@@ -38,7 +38,6 @@
     </div>
   </header>
 
-
   <div id="title" class="hero">
     <div class="overlay-mf"></div>
     <div class="hero-content display-table">
@@ -98,7 +97,6 @@
                           </label>
                         </div>
 
-
                         <div class="col-md-12 text-center my-3">
                           <div class="loading">Loading</div>
                           <div class="error-message"></div>
@@ -112,45 +110,35 @@
                     </form>
                   </div>
 
-
                   <script type="text/javascript">
-                    document.getElementById('phone').addEventListener('input', function (e) {
+                    document.getElementById('phone').addEventListener('input', function(e) {
                       var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
                       e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
                     });
-
-
-                    document.addEventListener('submit', function (event) {
+                    document.addEventListener('submit', function(event) {
                       event.preventDefault();
-
                       //API CALL TO SMS API
-
                       fetch('https://jsonplaceholder.typicode.com/posts', {
-                        method: 'POST',
-                        body: JSON.stringify(Object.fromEntries(new FormData(event.target))),
-                        headers: {
-                          'Content-type': 'application/json; charset=UTF-8'
-                        }
-                      })
-                      
-                      .then(function (response) {
-                        if (response.ok) {
-                          return response.json();                         
-                        }
-                        return Promise.reject(response);
-                      })
-                      
-                      .then(function (data) {
-                        console.log(data);
-
-                        //response from post
-                      })
-                      
-                      .catch(function (error) {
-                        console.warn(error);
-
-                        //error from post
-                      });
+                          method: 'POST',
+                          body: JSON.stringify(Object.fromEntries(new FormData(event.target))),
+                          headers: {
+                            'Content-type': 'application/json; charset=UTF-8'
+                          }
+                        })
+                        .then(function(response) {
+                          if (response.ok) {
+                            return response.json();
+                          }
+                          return Promise.reject(response);
+                        })
+                        .then(function(data) {
+                          console.log(data);
+                          //response from post
+                        })
+                        .catch(function(error) {
+                          console.warn(error);
+                          //error from post
+                        });
                     });
                   </script>
 
@@ -174,20 +162,17 @@
 
                   <div>
                     <script
-                      src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2Flhunter3%2Flhunter3.github.io%2Fblob%2Fmain%2FAnonymous-SMS.html&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+                      src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2Flhunter3%2Flhunter3.github.io%2Fblob%2Fmain%2FAnonymous-SMS.html&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on">
+                    </script>
                   </div>
-
 
                 </div>
               </div>
             </div>
           </div>
 
-
         </div>
     </section><!-- End Section -->
-
-
 
     <!--  Footer  -->
     <section id="source" class="paralax-mf footer-paralax bg-image sect-mt4 route">
