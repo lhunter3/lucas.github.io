@@ -23,6 +23,7 @@ window.onload = function () {
             ]
         });
 
+        
         console.log(data);
 
         const xhr = new XMLHttpRequest();
