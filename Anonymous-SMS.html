@@ -60,7 +60,7 @@
                 <div class="col-md-6">
                   <div class="about-me pt-4 pt-md-0">
                     <div class="title-box-2">
-                      <h5 class="title-left">Anonymous SMS</h5>
+                      <h5 class="title-left">About </h5>
                     </div>
                     <p class="lead">
                       AnonymousSMS is a secure messaging platform that enables users to send encrypted text messages
@@ -72,104 +72,119 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="about-me pt-4 pt-md-0">
-                    <div class="title-box-2">
-                      <h5 class="title-left">
-                        Send SMS
-                      </h5>
-                    </div>
+                  <div class="title-box-2">
+                    <h5 class="title-left">Send a Message</h5>
+                  </div>
+                  <div>
+                    <form id="form" role="form" class="js-email-form">
+                      <div class="row">
 
-                    <form id="form" class="needs-validation" onaction="sendRequest()" novalidate>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="basic-addon1">Phone Number</span>
+                          <input id="phone" name="phone" class="form-control" placeholder="(555) 555-5555" required>
+                        </div>
 
-                      <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">#</span>
-                        <input id="phone" class="form-control" placeholder="(555) 555-5555" aria-label="Phone Number"
-                          aria-describedby="basic-addon1" required>
-                        <div class="invalid-feedback">
-                          Please type a valid Phone Number.
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <textarea class="form-control" name="message" rows="5" placeholder="Message"
+                              required></textarea>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <input class="form-group" type="checkbox" value="" id="invalidCheck" required>
+                          <label class="form-group" for="invalidCheck">
+                            Agree to terms and conditions
+                          </label>
+                        </div>
+
+
+                        <div class="col-md-12 text-center my-3">
+                          <div class="loading">Loading</div>
+                          <div class="error-message"></div>
+                          <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+
+                        <div class="col-md-12 text-center">
+                          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                         </div>
                       </div>
-
-                      <div class="input-group-md">
-                        <span class="input-group-text">Text Message</span>
-                        <textarea class="form-control" aria-label="message" required></textarea>
-                        <div class="invalid-feedback">
-                          Please type a message for the receiver.
-                        </div>
-                      </div>
-
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                        <label class="form-check-label" for="invalidCheck">
-                          Agree to terms and conditions
-                        </label>
-                      </div>
-
-                      <button id="submit" class="btn btn-primary " type="submit" onAction="sendRequest()">Send
-                        Message</button>
                     </form>
-
-
                   </div>
+
+
+                  <script type="text/javascript">
+                    document.getElementById('phone').addEventListener('input', function (e) {
+                      var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+                      e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+                    });
+
+
+                    document.addEventListener('submit', function (event) {
+                      event.preventDefault();
+
+                      //API CALL TO SMS API
+
+                      fetch('https://jsonplaceholder.typicode.com/posts', {
+                        method: 'POST',
+                        body: JSON.stringify(Object.fromEntries(new FormData(event.target))),
+                        headers: {
+                          'Content-type': 'application/json; charset=UTF-8'
+                        }
+                      })
+                      
+                      .then(function (response) {
+                        if (response.ok) {
+                          return response.json();                         
+                        }
+                        return Promise.reject(response);
+                      })
+                      
+                      .then(function (data) {
+                        console.log(data);
+
+                        //response from post
+                      })
+                      
+                      .catch(function (error) {
+                        console.warn(error);
+
+                        //error from post
+                      });
+                    });
+                  </script>
+
                 </div>
-
-                <script type="text/javascript">
-                  document.getElementById('phone').addEventListener('input', function (e) {
-                    var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-                    e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-                  });
-
-                  var forms = document.querySelectorAll('.needs-validation')
-
-                  Array.prototype.slice.call(forms).forEach(function (form) {
-                    document.getElementById('submit').addEventListener('click', function (event) {
-                      if (form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-
-                        //THIS IS WHERE WE WILL CALL API
-                        console.log('works')
-                        //THIS IS WHERE WE WILL CALL API
-
-                      }
-                      else {
-                        form.classList.add('was-validated')
-                      }
-                    }, false)
-                  })
-                </script>
-
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col-sm-12 ">
-            <div class="box-shadow-full ">
-              <div class="row">
+          <div class="row">
+            <div class="col-sm-12 ">
+              <div class="box-shadow-full ">
+                <div class="row">
 
-                <div class="col-md-6">
-                  <div class="about-me pt-4 pt-md-0">
-                    <div class="title-box-2">
-                      <h5 class="title-left">Source Code</h5>
+                  <div class="col-md-6">
+                    <div class="about-me pt-4 pt-md-0">
+                      <div class="title-box-2">
+                        <h5 class="title-left">Source Code</h5>
+                      </div>
                     </div>
                   </div>
+
+                  <div>
+                    <script
+                      src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2Flhunter3%2Flhunter3.github.io%2Fblob%2Fmain%2FAnonymous-SMS.html&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+                  </div>
+
+
                 </div>
-
-                <div>
-                  <script
-                    src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2Flhunter3%2Flhunter3.github.io%2Fblob%2Fmain%2FAnonymous-SMS.html&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
-                </div>
-
-
               </div>
             </div>
           </div>
+
+
         </div>
-
-
-      </div>
     </section><!-- End Section -->
 
 
@@ -185,7 +200,7 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 
-       <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
@@ -194,4 +209,5 @@
     <script src="assets/js/main.js"></script>
 
 </body>
+
 </html>
